@@ -1,0 +1,8 @@
+Popis hry Lovci:
+
+Lovci honí běžce. Vyhrají, pokud ho zabijí. Prohrají, pokud jim běžec uteče portálem. Hra se spustí příkazem start.
+Za příkaz start se napíše jméno běžce. Ostatní jsou lovci. Lovci dostanou kompas, který ukazuje směrem k běžci.
+
+Příběh uživatele:
+Po spuštění hry běžec uvidí nápis Jsi běžec, tak utíkej. Lovci uvidí nápis Jsi lovec, tak chyť běžce. Běžec si musí
+vyrobít portál nebo ho najít ve hře. Portál je někde v podzemní místnosti.

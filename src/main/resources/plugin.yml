@@ -1,0 +1,9 @@
+name: Lovci
+version: '${project.version}'
+main: lovci.MainLovci
+api-version: 1.18
+
+commands:
+  start:
+    description: zadavame start+mezera+jmenoBezce
+  stop:
