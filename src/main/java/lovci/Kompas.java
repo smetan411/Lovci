@@ -6,10 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Kompas {
 
@@ -29,12 +26,17 @@ public class Kompas {
 
     private void smazLovciKompas(Player lovec) {
         List<ItemStack> kompasy = new ArrayList<>();
-        for (ItemStack polozka : lovec.getInventory()) {
-            if (polozka.getItemMeta().getDisplayName().equals("kompasLovce")) {
+        List<ItemStack> allItems = new ArrayList<>(Arrays.asList(lovec.getInventory().getContents()));
+        allItems.add(lovec.getInventory().getItemInMainHand());
+        allItems.add(lovec.getInventory().getItemInOffHand());
+        for (ItemStack polozka : allItems) {
+            if (polozka == null) continue;
+            var itemMeta = polozka.getItemMeta();
+            if (itemMeta != null && "kompasLovce".equals(itemMeta.getDisplayName())) {
                 kompasy.add(polozka);
             }
         }
-        kompasy.forEach(kompasKeSmazani -> lovec.getInventory().removeItem(kompasKeSmazani));
+        kompasy.forEach(kompasKeSmazani -> lovec.getInventory().remove(kompasKeSmazani));
     }
 
 
