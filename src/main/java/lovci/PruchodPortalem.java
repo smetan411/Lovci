@@ -14,8 +14,10 @@ public class PruchodPortalem implements Listener {
 
     @EventHandler
     public void projdiPortalem(PlayerTeleportEvent event){
+        if (!stavHry.jedeHra()) return;
+
         PlayerTeleportEvent.TeleportCause typUdalosti = event.getCause();
-        if(typUdalosti == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL){
+        if(typUdalosti == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL && event.getPlayer().equals(stavHry.getBezec())){
             stavHry.stop();
             stavHry.zpravaBezci("Utekls jim, vyhrals. Konec hry.");
             stavHry.zpravaLovcum("Zdrhl vam, prohrali jste. Konec hry.");

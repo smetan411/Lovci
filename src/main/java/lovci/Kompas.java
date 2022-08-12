@@ -50,6 +50,8 @@ public class Kompas {
     private class SmerovaniKompasu extends TimerTask {
         @Override
         public void run() {
+            if (!stavHry.jedeHra()) return;
+
             for (Player lovec : stavHry.getLovci()) {
                 lovec.setCompassTarget(stavHry.getBezec().getLocation());
             }

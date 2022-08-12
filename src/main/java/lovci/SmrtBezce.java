@@ -15,8 +15,10 @@ public class SmrtBezce implements Listener {
 
     @EventHandler
     public void bezecZemrel(PlayerDeathEvent smrtBezce){
+        if (!stavHry.jedeHra()) return;
+
         Player player = smrtBezce.getEntity();
-        if(player.getName().equals(stavHry.getBezec().getName()) && stavHry.jedeHra()){
+        if(player.equals(stavHry.getBezec())){
             stavHry.zpravaBezci("Zabili te, konec hry.");
             stavHry.zpravaLovcum("Vyhral jsi, bezec je mrtvy.");
             stavHry.stop();

@@ -38,6 +38,7 @@ public final class MainLovci extends JavaPlugin implements Listener {
                 }
                 if (args.length != 1) {
                     sender.sendMessage("Spatne, musis zadat: start jmenoBezce.");
+                    return false;
                 }
                 String jmenoBezce = args[0];
                 Player bezec = sender.getServer().getPlayer(jmenoBezce);
