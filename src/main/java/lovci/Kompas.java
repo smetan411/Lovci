@@ -9,7 +9,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.*;
 
 public class Kompas {
-
     private final StavHry stavHry;
 
     public Kompas(StavHry stavHry) {
@@ -39,7 +38,6 @@ public class Kompas {
         kompasy.forEach(kompasKeSmazani -> lovec.getInventory().remove(kompasKeSmazani));
     }
 
-
     public void dejLovcumKompas() {
         for (Player lovec : stavHry.getLovci()) {
             smazLovciKompas(lovec);
@@ -53,7 +51,6 @@ public class Kompas {
         @Override
         public void run() {
             if (!stavHry.jedeHra()) return;
-
             for (Player lovec : stavHry.getLovci()) {
                 lovec.setCompassTarget(stavHry.getBezec().getLocation());
             }

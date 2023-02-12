@@ -5,13 +5,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public final class MainLovci extends JavaPlugin implements Listener {
-
     private StavHry stavHry = new StavHry();
 
     @Override
@@ -29,6 +27,7 @@ public final class MainLovci extends JavaPlugin implements Listener {
                 stavHry.zpravaBezci("Hra byla ukoncena.");
                 stavHry.zpravaLovcum("Hra byla ukoncena.");
                 stavHry.getLovci().forEach(lovec -> lovec.getInventory().clear());
+                stavHry.getBezec().getInventory().clear();
                 break;
 
             case "start":
@@ -38,7 +37,7 @@ public final class MainLovci extends JavaPlugin implements Listener {
                 }
                 if (args.length != 1) {
                     sender.sendMessage("Spatne, musis zadat: start jmenoBezce.");
-                    return false;
+                    return true;
                 }
                 String jmenoBezce = args[0];
                 Player bezec = sender.getServer().getPlayer(jmenoBezce);
@@ -50,12 +49,18 @@ public final class MainLovci extends JavaPlugin implements Listener {
                 lovci.remove(bezec);
                 stavHry.setBezec(bezec, lovci);
 
+                stavHry.getLovci().forEach(lovec -> lovec.getInventory().clear());
+                stavHry.getBezec().getInventory().clear();
+
                 stavHry.zpravaBezci("Jsi Bezec, tak prchej!");
                 stavHry.zpravaLovcum("Jsi lovec, tak chyt bezce!");
+
                 new Kompas(stavHry).dejLovcumKompas();
                 stavHry.start();
                 break;
         }
-        return true;
+
+        return false;
     }
 }
+
