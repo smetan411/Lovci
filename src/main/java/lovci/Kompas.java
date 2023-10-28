@@ -2,6 +2,7 @@ package lovci;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -20,6 +21,7 @@ public class Kompas {
         ItemMeta vlastnosti = kompas.getItemMeta();
         vlastnosti.setDisplayName(ChatColor.BLUE + "kompasLovce");
         kompas.setItemMeta(vlastnosti);
+        kompas.addEnchantment(Enchantment.VANISHING_CURSE, 1); //z lovcu nebudou vypadavat kompasy
         return kompas;
     }
 

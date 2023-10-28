@@ -59,7 +59,6 @@ public final class MainLovci extends JavaPlugin implements Listener {
                 stavHry.start();
                 break;
         }
-
         return false;
     }
 }
