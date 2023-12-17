@@ -1,10 +1,14 @@
 package lovci;
 
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,15 +55,26 @@ public final class MainLovci extends JavaPlugin implements Listener {
                 lovci.remove(bezec);
                 stavHry.setBezec(bezec, lovci);
 
-                stavHry.getLovci().forEach(lovec -> lovec.getInventory().clear());
-                stavHry.getBezec().getInventory().clear();
-
                 stavHry.zpravaBezci("Jsi Bezec, tak prchej!");
                 stavHry.zpravaLovcum("Jsi lovec, tak chyt bezce!");
 
+                if (sender instanceof Player) {
+                    Player player = (Player) sender;
+                    getServer().getOnlinePlayers().forEach(allPlayers -> {
+                        allPlayers.teleport(player.getLocation());
+                        stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 720, 255, true, false, false)));
+                        stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 720, 255, true, false, false)));
+                        stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 720, 155, true, false, false)));
+                        stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 720, 155, true, false, false)));
+                        allPlayers.getInventory().clear();
+                    });
+                }
+
                 new Kompas(stavHry).dejLovcumKompas();
+                stavHry.getLovci().forEach(lovec -> lovec.getInventory().addItem(new ItemStack(Material.BREAD, 16)));
+                stavHry.getBezec().getInventory().addItem(new ItemStack(Material.BREAD, 16));
                 stavHry.start();
-                break;
+            break;
         }
         return false;
     }
