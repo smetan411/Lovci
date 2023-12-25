@@ -1,6 +1,7 @@
 package lovci;
 
 import org.bukkit.Material;
+import org.bukkit.WorldCreator;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -30,8 +31,8 @@ public final class MainLovci extends JavaPlugin implements Listener {
         switch (command.getName()) {
             case "stop":
                 stavHry.stop();
-                stavHry.zpravaBezci("Hra byla ukoncena.");
-                stavHry.zpravaLovcum("Hra byla ukoncena.");
+                stavHry.zpravaBezci("Hra byla zakoncena.");
+                stavHry.zpravaLovcum("Hra byla zakoncena.");
                 stavHry.getLovci().forEach(lovec -> lovec.getInventory().clear());
                 stavHry.getBezec().getInventory().clear();
                 break;
