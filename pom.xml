@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>Lovci</groupId>
-    <artifactId>LovciNovySvet</artifactId>
+    <artifactId>Lovci</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 

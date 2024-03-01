@@ -31,8 +31,8 @@ public final class MainLovci extends JavaPlugin implements Listener {
         switch (command.getName()) {
             case "stop":
                 stavHry.stop();
-                stavHry.zpravaBezci("Hra byla zakoncena.");
-                stavHry.zpravaLovcum("Hra byla zakoncena.");
+                stavHry.zpravaBezci("Hra byla ukoncena.");
+                stavHry.zpravaLovcum("Hra byla ukoncena.");
                 stavHry.getLovci().forEach(lovec -> lovec.getInventory().clear());
                 stavHry.getBezec().getInventory().clear();
                 break;
