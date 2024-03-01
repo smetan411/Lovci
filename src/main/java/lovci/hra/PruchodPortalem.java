@@ -1,4 +1,4 @@
-package lovci;
+package lovci.hra;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

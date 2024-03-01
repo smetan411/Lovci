@@ -1,5 +1,6 @@
 package lovci;
 
+import lovci.hra.*;
 import org.bukkit.Material;
 import org.bukkit.WorldCreator;
 import org.bukkit.command.Command;

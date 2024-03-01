@@ -1,4 +1,4 @@
-package lovci;
+package lovci.hra;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
