@@ -37,7 +37,7 @@ public class Kompas {
                 kompasy.add(polozka);
             }
         }
-        kompasy.forEach(kompasKeSmazani -> lovec.getInventory().remove(kompasKeSmazani)) ;
+        kompasy.forEach(kompasKeSmazani -> lovec.getInventory().remove(kompasKeSmazani));
     }
 
     public void dejLovcumKompas() {
