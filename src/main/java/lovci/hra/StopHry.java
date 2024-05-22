@@ -3,7 +3,7 @@ package lovci.hra;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.jetbrains.annotations.NotNull;
+
 
 public class StopHry implements CommandExecutor {
     private final StavHry stavHry;
@@ -13,7 +13,7 @@ public class StopHry implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         stavHry.stop();
         stavHry.zpravaBezci("Hra byla zakoncena.");
         stavHry.zpravaLovcum("Hra byla zakoncena.");

@@ -1,5 +1,6 @@
 package lovci.hra;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
@@ -9,21 +10,22 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StartHry implements CommandExecutor {
     private final Server server;
+    private final StavHry stavHry;
 
-    public StartHry(Server server) {
+    public StartHry(Server server, StavHry stavHry) {
         this.server = server;
+        this.stavHry = stavHry;
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        StavHry stavHry = new StavHry();
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+
         if (stavHry.jedeHra()) {
             commandSender.sendMessage("Hra jede, nemuzes nastartovat novou, dokud hra neskonci.");
             return true;
@@ -45,21 +47,22 @@ public class StartHry implements CommandExecutor {
         stavHry.zpravaBezci("Jsi Bezec, tak prchej!");
         stavHry.zpravaLovcum("Jsi lovec, tak chyt bezce!");
 
-        if (commandSender instanceof Player) {
-            Player player = (Player) commandSender;
-            server.getOnlinePlayers().forEach(allPlayers -> {
-                allPlayers.teleport(player.getLocation());
-                stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 720, 255, true, false, false)));
-                stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 720, 255, true, false, false)));
-                stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 720, 155, true, false, false)));
-                stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 720, 155, true, false, false)));
-                allPlayers.getInventory().clear();
-            });
-        }
+        Location locationToStart = ((Player) commandSender).getLocation();
+        bezec.getInventory().addItem(new ItemStack(Material.BREAD, 16));
+        bezec.teleport(locationToStart);
+        bezec.getInventory().clear();
+
+        lovci.forEach(lovec -> {
+            lovec.teleport(locationToStart);
+            lovec.getInventory().clear();
+            lovec.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 720, 255, true, false, false));
+            lovec.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 720, 255, true, false, false));
+            lovec.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 720, 155, true, false, false));
+            lovec.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 720, 155, true, false, false));
+            lovec.getInventory().addItem(new ItemStack(Material.BREAD, 16));
+        });
 
         new Kompas(stavHry).dejLovcumKompas();
-        stavHry.getLovci().forEach(lovec -> lovec.getInventory().addItem(new ItemStack(Material.BREAD, 16)));
-        stavHry.getBezec().getInventory().addItem(new ItemStack(Material.BREAD, 16));
         stavHry.start();
         return true;
     }

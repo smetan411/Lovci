@@ -1,6 +1,7 @@
 package lovci.hra;
 
 import org.bukkit.entity.Player;
+
 import java.util.List;
 
 public class StavHry {
