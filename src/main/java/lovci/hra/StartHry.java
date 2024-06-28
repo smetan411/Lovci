@@ -1,5 +1,6 @@
 package lovci.hra;
 
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Server;
@@ -47,19 +48,25 @@ public class StartHry implements CommandExecutor {
         stavHry.zpravaBezci("Jsi Bezec, tak prchej!");
         stavHry.zpravaLovcum("Jsi lovec, tak chyt bezce!");
 
-        Location locationToStart = ((Player) commandSender).getLocation();
-        bezec.getInventory().addItem(new ItemStack(Material.BREAD, 16));
-        bezec.teleport(locationToStart);
+        Location poziceStartu = ((Player) commandSender).getLocation();
+
+        bezec.teleport(poziceStartu);
+        bezec.setGameMode(GameMode.SURVIVAL);
         bezec.getInventory().clear();
+        bezec.getInventory().addItem(new ItemStack(Material.BREAD, 16));
+
 
         lovci.forEach(lovec -> {
-            lovec.teleport(locationToStart);
+            lovec.teleport(poziceStartu);
+            lovec.setGameMode(GameMode.SURVIVAL);
             lovec.getInventory().clear();
-            lovec.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 720, 255, true, false, false));
-            lovec.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 720, 255, true, false, false));
-            lovec.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 720, 155, true, false, false));
-            lovec.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 720, 155, true, false, false));
             lovec.getInventory().addItem(new ItemStack(Material.BREAD, 16));
+
+            lovec.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 200, 255, true, false, false));
+            lovec.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 200, 255, true, false, false));
+            lovec.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 200, 155, true, false, false));
+            lovec.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 200, 155, true, false, false));
+
         });
 
         new Kompas(stavHry).dejLovcumKompas();

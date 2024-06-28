@@ -16,9 +16,14 @@ public class PruchodPortalem implements Listener {
         if (!stavHry.jedeHra()) return;
         PlayerTeleportEvent.TeleportCause typUdalosti = event.getCause();
         if (typUdalosti == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL && event.getPlayer().equals(stavHry.getBezec())) {
-            stavHry.stop();
+
             stavHry.zpravaBezci("Utekls jim, vyhrals. Konec hry.");
             stavHry.zpravaLovcum("Zdrhl vam, prohrali jste. Konec hry.");
+
+            stavHry.getLovci().forEach(lovec -> lovec.getInventory().clear());
+            stavHry.getBezec().getInventory().clear();
+
+            stavHry.stop();
         }
     }
 }

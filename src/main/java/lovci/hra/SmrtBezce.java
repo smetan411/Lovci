@@ -17,8 +17,13 @@ public class SmrtBezce implements Listener {
         if (!stavHry.jedeHra()) return;
         Player player = smrtBezce.getEntity();
         if (player.equals(stavHry.getBezec())) {
+
             stavHry.zpravaBezci("Zabili te, konec hry.");
             stavHry.zpravaLovcum("Vyhral jsi, bezec je mrtvy.");
+
+            stavHry.getLovci().forEach(lovec -> lovec.getInventory().clear());
+            stavHry.getBezec().getInventory().clear();
+
             stavHry.stop();
         }
     }
