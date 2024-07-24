@@ -42,8 +42,8 @@ public class StartHry implements CommandExecutor {
         lovci.remove(bezec);
         stavHry.setBezec(bezec, lovci);
 
-        stavHry.zpravaBezci("Jsi Bezec, tak prchej!");
-        stavHry.zpravaLovcum("Jsi lovec, tak chyt bezce!");
+        stavHry.zpravaBezci("Jsi Bezec, tak prchej!", true);
+        stavHry.zpravaLovcum("Jsi lovec, tak chyt bezce!", true);
 
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;

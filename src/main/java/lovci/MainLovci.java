@@ -32,8 +32,8 @@ public final class MainLovci extends JavaPlugin implements Listener {
         switch (command.getName()) {
             case "stop":
                 stavHry.stop();
-                stavHry.zpravaBezci("Hra byla ukoncena.");
-                stavHry.zpravaLovcum("Hra byla ukoncena.");
+                stavHry.zpravaBezci("Hra byla ukoncena.", true);
+                stavHry.zpravaLovcum("Hra byla ukoncena.", true);
                 stavHry.getLovci().forEach(lovec -> lovec.getInventory().clear());
                 stavHry.getBezec().getInventory().clear();
                 break;
@@ -57,8 +57,8 @@ public final class MainLovci extends JavaPlugin implements Listener {
                 lovci.remove(bezec);
                 stavHry.setBezec(bezec, lovci);
 
-                stavHry.zpravaBezci("Jsi Bezec, tak prchej!");
-                stavHry.zpravaLovcum("Jsi lovec, tak chyt bezce!");
+                stavHry.zpravaBezci("Jsi Bezec, tak prchej!", true);
+                stavHry.zpravaLovcum("Jsi lovec, tak chyt bezce!", true);
 
                 if (sender instanceof Player) {
                     Player player = (Player) sender;

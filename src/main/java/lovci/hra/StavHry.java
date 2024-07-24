@@ -33,12 +33,12 @@ public class StavHry {
         return lovci;
     }
 
-    public void zpravaLovcum(String zprava) {
-        lovci.forEach(lovec -> lovec.sendMessage(zprava));
+    public void zpravaLovcum(String zprava, boolean bold) {
+        lovci.forEach(lovec -> lovec.sendTitle(bold ? zprava : " ", bold ? " " : zprava, 0, 100, 0));
     }
 
-    public void zpravaBezci(String zprava) {
-        bezec.sendMessage(zprava);
+    public void zpravaBezci(String zprava, boolean bold) {
+        bezec.sendTitle(bold ? zprava : " ", bold ? " " : zprava, 0, 100, 0);
     }
 
 }

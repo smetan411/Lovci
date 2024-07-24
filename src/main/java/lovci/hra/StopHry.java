@@ -15,8 +15,8 @@ public class StopHry implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         stavHry.stop();
-        stavHry.zpravaBezci("Hra byla zakoncena.");
-        stavHry.zpravaLovcum("Hra byla zakoncena.");
+        stavHry.zpravaBezci("Hra byla zakoncena.", true);
+        stavHry.zpravaLovcum("Hra byla zakoncena.", true);
         stavHry.getLovci().forEach(lovec -> lovec.getInventory().clear());
         stavHry.getBezec().getInventory().clear();
         return true;
